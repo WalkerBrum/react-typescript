@@ -1,8 +1,9 @@
-import { createContext } from "react";
+import { createContext, useCallback } from "react";
 
 
 interface IUsuarioLogadoContextData {
     nomeDoUsuario: string,
+    logout: () => void;
 }
 
 // Truque para mascara objeto vazio e não precisar declara-lo
@@ -14,8 +15,12 @@ interface IUsuarioLogadoProviderProps {
 
  export const UsuarioLogadoProvider: React.FC<IUsuarioLogadoProviderProps> = ({ children }) => {
 
+    const handleLogout = useCallback(() => {
+        console.log('Logout executou');
+    }, []);
+    
     return (
-        <UsuarioLogadoContext.Provider value={{nomeDoUsuario: 'Walker'}}>
+        <UsuarioLogadoContext.Provider value={{nomeDoUsuario: 'Walker', logout: handleLogout}}>
             {children}
         </UsuarioLogadoContext.Provider>
     );
