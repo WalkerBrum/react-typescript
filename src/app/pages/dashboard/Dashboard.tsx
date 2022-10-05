@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useContext, useRef } from 'react';
-import { UsuarioLogadoContext } from '../../shared/contexts';
+import { useRef } from 'react';
+import { useUsuarioLogado } from '../../shared/hooks';
 
 export const Dashboard = () => {
     // useRef pode ser usado para alterar algum valor por um tipo de ação do usuário, mas não quer fazer um re-render
@@ -13,7 +13,7 @@ export const Dashboard = () => {
       usar assim
       counterRef.current
     */
-    const usuarioLogadoContext = useContext(UsuarioLogadoContext);
+    const usuarioLogadoContext = useUsuarioLogado();
     
 
     return (
