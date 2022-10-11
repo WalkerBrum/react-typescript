@@ -72,7 +72,7 @@ export const Dashboard = () => {
                                             : oldListItem.isCompleted
                                         return {
                                             ...oldListItem,
-                                            isSelected: newisCompleted
+                                            isCompleted: newisCompleted
                                         }
                                     })
                                 })
