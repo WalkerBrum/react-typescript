@@ -1,11 +1,7 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ApiException } from '../../shared/services/api/ErrorException';
+import { ITarefa, TarefasService } from '../../shared/services/api/tarefas/TarefasService';
 
-
-interface ITarefa {
-    id: number,
-    title: string,
-    isCompleted: boolean,
-}
 
 export const Dashboard = () => {
     // useRef pode ser usado para alterar algum valor por um tipo de ação do usuário, mas não quer fazer um re-render
@@ -21,6 +17,21 @@ export const Dashboard = () => {
     
     const [lista, setLista] = useState<ITarefa[]>([]);
 
+    // Buscando tarefas no mock db.jason
+    useEffect(() => {
+        TarefasService.getAll()
+        //Deve usar o then para tratar promisso com useEffect por precisar escrever menos código
+        .then((result) => {
+            if (result instanceof ApiException) {
+
+                alert(result.message);
+                
+            } else {
+
+                setLista(result);
+            }
+        });
+    }, []);
     const handleInputKeyDown: React.KeyboardEventHandler<HTMLInputElement> = useCallback((e) => {
         if (e.key === 'Enter') {
             

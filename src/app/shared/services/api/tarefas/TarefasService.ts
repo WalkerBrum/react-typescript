@@ -2,7 +2,7 @@ import { Api } from "../ApiConfig";
 import { ApiException } from "../ErrorException";
 
 
-interface ITarefa {
+export interface ITarefa {
     id: number,
     title: string,
     isCompleted: boolean,
@@ -58,7 +58,7 @@ const deleteById = async (id: string): Promise<undefined | ApiException> => {
     }  
 };
 
-export const TarefasServices = {
+export const TarefasService = {
     getAll,
     create,
     getById,
